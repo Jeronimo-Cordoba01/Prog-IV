@@ -1,0 +1,21 @@
+<!-- <div>
+    <img [src]="imagen">
+    <div>
+        <h1>{{titulo}}</h1>
+        <h2>{{subtitulo}}</h2>
+        <a routerLink="link">{{textoLink}}</a>
+    </div>
+</div> -->
+
+<!-- <p>{{value ()}}</p> -->
+
+<div id="card">
+    <img [src]="this.imagen()">
+    <div>
+        <h1>{{this.titulo ()}}</h1>
+        <h2>{{this.subtitulo ()}}</h2>
+        <button (click)="cardClickeada()">
+            {{this.textoLink()}}
+        </button>
+    </div>
+</div>

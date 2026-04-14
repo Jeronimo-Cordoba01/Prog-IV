@@ -1,0 +1,5 @@
+#tutoriales{
+    display:grid;
+    gap:10px;
+    grid-auto-rows: 1fr 1 fr 1fr;
+}
