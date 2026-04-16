@@ -1,0 +1,10 @@
+.error, .error:focus, .error:active{
+    border: solid 2px #f00;
+    outline: none;
+}
+
+.small-error{
+    color: #f00;
+    display: block;
+    margin: 10px 0
+}
