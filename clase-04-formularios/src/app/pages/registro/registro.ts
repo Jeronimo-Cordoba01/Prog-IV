@@ -1,5 +1,6 @@
+import { mergeNsAndName } from '@angular/compiler';
 import { Component } from '@angular/core';
-import { Validators, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Validators, FormControl, FormGroup, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -24,7 +25,19 @@ export class Registro {
     apellido: new FormControl('',[Validators.required]),
     email: new FormControl('',[Validators.email, Validators.required]),
     password: new FormControl('',[Validators.required, Validators.minLength(8)]),
+    telefono: new FormControl('', [this.validacionPropia])
   });
+
+  validacionPropia(control: AbstractControl){
+    if (typeof control.value === "string" && control.value.includes("+54")) {
+      return null;
+    } else{
+      return {
+        mensaje:"No tiene código de área"
+      }
+    }
+  }
+
   mostrar(){
     if (!this.formulario.valid) {
       console.log("No valido");
