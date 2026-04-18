@@ -1,0 +1,52 @@
+<h1>LogIn</h1>
+<!--
+    <div>
+        <label for="nombre">Nombre</label>
+        <input name = "nombre" id="nombre" [formControl]="nombre"/>
+    </div>
+    <div>
+        <label for="apellido">Apellido</label>
+        <input name = "apellido" id="apellido" [formControl]="apellido"/>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input name = "email" id="email" [formControl]="email"/>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input name = "password" id="password" [formControl]="password"/>
+    </div>
+
+    <button (click)="mostrar()"> Registrarse</button>
+-->
+
+<form [formArray]="formulario" (ngSubmit)="mostrar()">
+    @for (control of formulario.controls; track $index) {
+        <input formControlName="$index">
+    }
+
+<!--
+<form [formArray]="formulario" (ngSubmit)="mostrar()">
+    <div>
+        <label for="nombre">Nombre</label>
+        <input name = "nombre" id="nombre" formControlName="nombre" [className]="formulario.get('nombre')?.errors != null ? 'error':''"/>
+        @if (formulario.get("nombre")?.errors&&formulario.get("nombre")?.errors?.['minlenght']) {
+            <small class="error"></small>
+        }
+    </div>
+    <div>
+        <label for="apellido">Apellido</label>
+        <input name = "apellido" id="apellido" formControlName="1"/>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input name = "email" id="email" formControlName="2"/>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input name = "password" id="password" formControlName="3"/>
+    </div>-->
+
+    <button type="submit" [disabled]="!formulario.valid"> Registrarse</button>
+    <button type="reset"> Borrar Campo</button>
+</form>

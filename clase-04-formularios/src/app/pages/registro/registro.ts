@@ -38,6 +38,12 @@ export class Registro {
     }
   }
 
+    algo = 'algo';
+
+    get Algo() {
+      return this.algo;
+    }
+
   mostrar(){
     if (!this.formulario.valid) {
       console.log("No valido");
