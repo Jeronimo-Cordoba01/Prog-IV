@@ -8,5 +8,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('clase-05-auth');
+  protected readonly title = signal('clase-06-db-realtime');
 }

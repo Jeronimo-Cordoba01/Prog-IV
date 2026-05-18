@@ -22,22 +22,32 @@ export class AuthService {
 
   usuarioActual = signal<User | null>(null);
 
+  router = inject(Router);
+
   constructor() {
     this.supabase = createClient(this.supabaseUrl, this.publishableKey);
 
-    // Revisá si hay un usuario ya logueado, asi no hago el login
-    this.supabase.auth.getUser().then((response: UserResponse) => {
-      if (response.error) {
-        console.log(response.error);
-      } else {
-        this.usuarioActual.set(response.data.user);
+    this.supabase.auth.onAuthStateChange((event, session) => {
+      // PODRÍA ver qué evento es y hacer algo distinto para cada uno.
+      const user = session?.user;
+
+      this.usuarioActual.set(user ?? null);
+
+      // if (user) {
+      //   this.router.navigateByUrl('');
+      // } else {
+      //   this.router.navigateByUrl('/auth/login');
+      // }
+
+      if (!user) {
+        this.router.navigateByUrl('');
+      }
+
+      if (user) {
+        this.router.navigateByUrl('');
       }
     });
   }
-
-  // ngOnInit() {
-  //   this.supabase = createClient(this.supabaseUrl, this.publishableKey);
-  // }
 
   async registrar(datos: IRegistro): Promise<void> {
     const response: AuthResponse = await this.supabase?.auth.signUp({
@@ -49,14 +59,6 @@ export class AuthService {
         },
       },
     });
-
-    if (response.error) {
-      console.log(response.error);
-    } else {
-      console.log(response.data);
-      this.usuarioActual.set(response.data.user);
-      this.router.navigateByUrl('/auth');
-    }
   }
 
   async loguear({ email, password }: ILogin): Promise<void> {
@@ -64,31 +66,9 @@ export class AuthService {
       email: email,
       password: password,
     });
-
-    if (response.error) {
-      console.log(response.error);
-    }
-    {
-      console.log(response.data);
-      this.usuarioActual.set(response.data.user);
-      this.router.navigateByUrl('/auth');
-    }
   }
 
-  router = inject(Router);
-
-  cerrarSesion() {
-    // Hay cosas que aunque den error (como por ejemplo, que la sesión ya haya caducado), DEBEN finalizar correctamente.
-    this.supabase.auth.signOut();
-    this.usuarioActual.set(null);
-    this.router.navigateByUrl('/auth/login');
+  async cerrarSesion() {
+    await this.supabase.auth.signOut();
   }
-
-  // ----------------------
-  // Cambiar contraseña
-  // Olvidé mi contraseña
-  // Olvidé mi usuario
-  // Validar mi email
-  // Loguearse con proveedores externos.
-  // Validar roles...??????
 }
