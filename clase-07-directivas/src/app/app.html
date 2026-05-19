@@ -1,0 +1,13 @@
+<h1>Directivas</h1>
+
+@if (true) {
+  <div [appResaltar]="algo" [color]="color">Div con directiva</div>
+  <p appResaltar>P con directiva</p>
+  <h1 appResaltar color="#555">H1 con directiva</h1>
+  <p id="p">P sin directiva</p>
+  <h1 appResaltar>H1 con directiva</h1>
+}
+
+<p ngNonBindable>This should not evaluate: {{ 1 + 1 }}</p>
+
+<p appTimer></p>
