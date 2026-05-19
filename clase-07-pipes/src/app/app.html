@@ -1,0 +1,41 @@
+<p>{{ nombre0 | titlecase }}</p>
+<p>{{ nombre1 | titlecase }}</p>
+<p>{{ nombre2 | titlecase }}</p>
+<p>{{ nombre3 | titlecase }}</p>
+
+<p>{{ objeto | json }}</p>
+
+<!-- El pipe date se puede usar con strings, números o objetos Date -->
+<!--<p>{{ fechaEnString | date:"parametro1": "parametro2":123: "parametro4" | uppercase }}</p>-->
+<p>{{ fechaEnString | date:"DD/MM/yy" | uppercase }}</p>
+<p>{{ fechaLarga | date:"DD/MM/yy hh:mm:ss" : "-3" | uppercase }}</p>
+<p>{{ fechaNumero | date:"DD/MM/yy hh:mm:ss.ssssz" : "+0"| uppercase }}</p>
+<p>{{ fechaDate | date:"DD/MM/yy hh:mm:ss.ssssz" : "+0" | uppercase }}</p>
+
+<!-- Monedas -->
+<p>{{ 1234.56 | currency }}</p>
+<p>{{ 1234.56 | currency: "EUR" }}</p>
+<p>{{ 1234.56 | currency: "EUR": "code" }}</p>
+<p>{{ 1234.56 | currency: "EUR": "symbol": "2.2-6" }}</p>
+<p>{{ 1234.56123 | currency: "EUR": "symbol": "2.2-6" }}</p>
+<p>{{ 4.56 | currency: "EUR": "symbol": "2.2-6" }}</p>
+
+<!-- Pipe Propio-->
+<p>{{ textoCorto | acortador: 10: "..." }}</p>
+<p>{{ textoLargo | acortador: 20: "..." }}</p>
+<p>{{ textoLargo | acortador: 35: "$$$" }}</p>
+
+<p>{{ 120 | segundos: true }}</p>
+<p>{{ 120 | segundos: false }}</p>
+<p>{{ 630 | segundos }}</p>
+<p>{{ 40 | segundos }}</p>
+
+<p>{{ '2026-04-30T23:12:40Z' | fecha }}</p>
+<p>{{ '2026-04-30T20:15:00Z' | fecha }}</p>
+<p>{{ '2026-04-30T19:20:00Z' | fecha }}</p>
+<p>{{ '2026-04-30T18:20:00Z' | fecha }}</p>
+<p>{{ '2026-04-30T17:20:00Z' | fecha }}</p>
+<p>{{ '2026-04-29T17:20:00Z' | fecha }}</p>
+<p>{{ '2026-04-28T17:20:00Z' | fecha }}</p>
+<p>{{ '2026-03-28T17:20:00Z' | fecha }}</p>
+<p>{{ '2025-03-28T17:20:00Z' | fecha }}</p>
